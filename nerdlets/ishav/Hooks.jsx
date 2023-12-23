@@ -11,13 +11,20 @@ export const Hooks = () => {
     }
 
   return (
-    <>
-    <h1>Hooks😊</h1>
-    <h2>Counter value: {counter}</h2>
-    <button onClick={addValue}>Add Value {counter}</button>
-    <br />
-    <button onClick={removeValue}>Remove Value {counter}</button>
-    <p>Footer: {counter}</p>
-    </>
+    <div>
+      <br />
+      <br />
+      <h1>Hooks😊</h1>
+      <br />
+      <h2>Counter value: {counter}</h2>
+      <br />
+      <button onClick={addValue}>Add Value {counter}</button>
+      <br />
+      <button onClick={removeValue}>Remove Value {counter}</button>
+      <br />
+      <p>Footer: {counter}</p>
+      <br />
+      <br />
+    </div>
   )
 }
