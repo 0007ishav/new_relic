@@ -6,6 +6,13 @@ import {
     PolarGrid,
     PolarAngleAxis,
     PolarRadiusAxis,
+    Line,
+    LineChart,
+    Bar,
+    BarChart as RechartsBarChart,
+    XAxis,
+    YAxis,
+    Tooltip,
 } from 'recharts';
 import {Card, CardBody, HeadingText, NrqlQuery, Spinner, AutoSizer} from 'nr1';
 
@@ -89,23 +96,42 @@ export default class CustomvixVisualization extends React.Component {
                             const transformedData = this.transformData(data);
 
                             return (
-                                <RadarChart
-                                    width={width}
-                                    height={height}
-                                    data={transformedData}
-                                >
-                                    <PolarGrid />
-                                    <PolarAngleAxis dataKey="name" />
-                                    <PolarRadiusAxis
-                                        tickFormatter={this.formatTick}
-                                    />
-                                    <Radar
-                                        dataKey="value"
-                                        stroke={stroke || '#51C9B7'}
-                                        fill={fill || '#51C9B7'}
-                                        fillOpacity={0.6}
-                                    />
-                                </RadarChart>
+                                <div>
+                                    <RadarChart width={width} height={height} data={transformedData}>
+                                        <PolarGrid />
+                                        <PolarAngleAxis dataKey="name" />
+                                        <PolarRadiusAxis tickFormatter={this.formatTick} />
+                                        <Radar
+                                            dataKey="value"
+                                            stroke={stroke || '#51C9B7'}
+                                            fill={fill || '#51C9B7'}
+                                            fillOpacity={0.6}
+                                        />
+                                    </RadarChart>
+
+                                    <LineChart width={width} height={height} data={transformedData}>
+                                        <XAxis dataKey="name" />
+                                        <YAxis tickFormatter={this.formatTick} />
+                                        <Tooltip />
+                                        <Line
+                                            type="monotone"
+                                            dataKey="value"
+                                            stroke={stroke || '#51C9B7'}
+                                            fill={fill || '#51C9B7'}
+                                        />
+                                    </LineChart>
+
+                                    <RechartsBarChart width={width} height={height} data={transformedData}>
+                                        <XAxis dataKey="name" />
+                                        <YAxis tickFormatter={this.formatTick} />
+                                        <Tooltip />
+                                        <Bar
+                                            dataKey="value"
+                                            fill={fill || '#51C9B7'}
+                                            stroke={stroke || '#51C9B7'}
+                                        />
+                                    </RechartsBarChart>
+                                </div>
                             );
                         }}
                     </NrqlQuery>
